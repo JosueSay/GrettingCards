@@ -74,7 +74,7 @@ fun formulario(){
         //Texto del titulo
         Text("! Ingresa los Datos ",style = TextStyle(
                 fontSize = 25.sp, fontWeight = FontWeight.Bold
-                )cd D
+                )
         )
         Text(" de tu Carta !",style = TextStyle(
             fontSize = 25.sp, fontWeight = FontWeight.Bold
