@@ -44,7 +44,7 @@ class Formulario : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
 
-
+            formulario()
         }
     }
 }
@@ -73,17 +73,20 @@ fun formulario(){
     Column (modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally){
         //Texto del titulo
         Text("! Ingresa los Datos ",style = TextStyle(
-                fontSize = 25.sp, fontWeight = FontWeight.Bold
+                fontSize = 35.sp, fontWeight = FontWeight.Bold
                 )
         )
         Text(" de tu Carta !",style = TextStyle(
-            fontSize = 25.sp, fontWeight = FontWeight.Bold
+            fontSize = 35.sp, fontWeight = FontWeight.Bold
         )
         )
         Spacer(modifier = Modifier.height(100.dp))
         OutlinedTextField(value =nombre, onValueChange = {newText -> nombre = newText},label= { Text(text = "Nombre",modifier = Modifier.background(Color.White))})
+        Spacer(modifier = Modifier.height(20.dp))
         OutlinedTextField(value =apellido, onValueChange = {newText -> apellido = newText},label= { Text(text = "Apellido",modifier = Modifier.background(Color.White))})
+        Spacer(modifier = Modifier.height(20.dp))
         OutlinedTextField(value =dedicatoria, onValueChange = {newText -> dedicatoria = newText},label= { Text(text = "Dedicatoria",modifier = Modifier.background(Color.White))})
+        Spacer(modifier = Modifier.height(20.dp))
         ExposedDropdownMenuBox(expanded = isExpanded, onExpandedChange = {isExpanded = it}) {
             OutlinedTextField(value =NombreTipo, onValueChange = {},
                 readOnly = true, trailingIcon = {ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpanded)},
