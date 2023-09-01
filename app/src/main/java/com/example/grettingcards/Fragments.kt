@@ -1,8 +1,11 @@
 package com.example.grettingcards
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -29,22 +32,39 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+
+
+
 class Fragments : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            //menuFragment()
+            val nombre = intent.getStringExtra("name") ?: ""
+            val apellido = intent.getStringExtra("apell") ?: ""
+            val dedicatoria = intent.getStringExtra("dedica") ?: ""
+            val tipoCarta = intent.getIntExtra("tipo", 0)
+
+            menuFragment(nombre, apellido, dedicatoria, tipoCarta)
         }
     }
 }
 
+
 @Composable
 fun menuFragment(nombre: String, apellido: String, dedicatoria: String, tipo_fondo: Int) {
+
+    val lanzador = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.StartActivityForResult()
+    ) { resultado ->
+        // Manejar el resultado si es necesario
+    }
+    val contexto = LocalContext.current
 
     val fondos: Map<Int, Int> = dameFondo(tipo_fondo)
     // Id del fondo 0
@@ -147,8 +167,10 @@ fun menuFragment(nombre: String, apellido: String, dedicatoria: String, tipo_fon
             Spacer(modifier = Modifier.weight(1f))
             // Boton de Inicio
             IconButton(
-                // Acción del boton
-                onClick = { /* TODO: Implementar acción de regresar */ },
+                onClick = {
+                    val navegacion = Intent(contexto,MainActivity::class.java)
+                    lanzador.launch(navegacion)
+                },
                 // Tamaño del boton
                 modifier = Modifier.size(100.dp)
             ) {
@@ -161,6 +183,7 @@ fun menuFragment(nombre: String, apellido: String, dedicatoria: String, tipo_fon
                     modifier = Modifier.fillMaxSize()
                 )
             }
+
 
             // Separador entre botones
             Spacer(modifier = Modifier.weight(1f))
