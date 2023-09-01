@@ -67,6 +67,7 @@ fun menuFragment(nombre: String, apellido: String, dedicatoria: String, tipo_fon
     val contexto = LocalContext.current
 
     val fondos: Map<Int, Int> = dameFondo(tipo_fondo)
+
     // Id del fondo 0
     var id_actual by remember {
         mutableStateOf(0)
@@ -225,7 +226,7 @@ fun Color.isColorDark(): Boolean {
 fun dameFondo(tipo_fondo: Int): Map<Int, Int> {
     return when (tipo_fondo) {
         // Cumpleaños
-        0 -> mapOf(
+        1 -> mapOf(
             0 to R.drawable.fondo_cumplenos1,
             1 to R.drawable.fondo_cumplenos2,
             2 to R.drawable.fondo_cumplenos3,
@@ -233,7 +234,7 @@ fun dameFondo(tipo_fondo: Int): Map<Int, Int> {
             4 to R.drawable.fondo_cumplenos5
         )
         // Boda
-        1 -> mapOf(
+        2 -> mapOf(
             0 to R.drawable.fondo_boda1,
             1 to R.drawable.fondo_boda2,
             2 to R.drawable.fondo_boda3,
@@ -241,7 +242,7 @@ fun dameFondo(tipo_fondo: Int): Map<Int, Int> {
             4 to R.drawable.fondo_boda3
         )
         // San Valentín
-        2 -> mapOf(
+        3 -> mapOf(
             0 to R.drawable.fondo_sanvalentin1,
             1 to R.drawable.fondo_sanvalentin2,
             2 to R.drawable.fondo_sanvalentin3,
@@ -249,7 +250,7 @@ fun dameFondo(tipo_fondo: Int): Map<Int, Int> {
             4 to R.drawable.fondo_sanvalentin5
         )
         // Navidad
-        3 -> mapOf(
+        4 -> mapOf(
             0 to R.drawable.fondo_navidad1,
             1 to R.drawable.fondo_navidad2,
             2 to R.drawable.fondo_navidad3,
