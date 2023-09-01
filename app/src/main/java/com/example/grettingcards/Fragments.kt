@@ -237,6 +237,6 @@ fun dameFondo(tipo_fondo: Int): Map<Int, Int> {
 @Composable
 @Preview
 fun disenioPreview() {
-    menuFragment("Josue", "Perez", "¡Pásatelo bien!", 1)
+    //menuFragment("Josue", "Perez", "¡Pásatelo bien!", 1)
 
 }
