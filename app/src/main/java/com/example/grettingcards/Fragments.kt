@@ -192,43 +192,43 @@ fun dameFondo(tipo_fondo: Int): Map<Int, Int> {
     return when (tipo_fondo) {
         // Cumpleaños
         0 -> mapOf(
-            0 to R.drawable.fondo_navidad1,
-            1 to R.drawable.fondo_navidad1,
-            2 to R.drawable.fondo_navidad1,
-            3 to R.drawable.fondo_navidad1,
-            4 to R.drawable.fondo_navidad1
+            0 to R.drawable.fondo_cumplenos1,
+            1 to R.drawable.fondo_cumplenos2,
+            2 to R.drawable.fondo_cumplenos3,
+            3 to R.drawable.fondo_cumplenos4,
+            4 to R.drawable.fondo_cumplenos5
         )
         // Boda
         1 -> mapOf(
-            0 to R.drawable.fondo_navidad1,
-            1 to R.drawable.fondo_navidad1,
-            2 to R.drawable.fondo_navidad1,
-            3 to R.drawable.fondo_navidad1,
-            4 to R.drawable.fondo_navidad1
+            0 to R.drawable.fondo_boda1,
+            1 to R.drawable.fondo_boda2,
+            2 to R.drawable.fondo_boda3,
+            3 to R.drawable.fondo_boda3,
+            4 to R.drawable.fondo_boda3
         )
         // San Valentín
         2 -> mapOf(
-            0 to R.drawable.fondo_navidad1,
-            1 to R.drawable.fondo_navidad1,
-            2 to R.drawable.fondo_navidad1,
-            3 to R.drawable.fondo_navidad1,
-            4 to R.drawable.fondo_navidad1
+            0 to R.drawable.fondo_sanvalentin1,
+            1 to R.drawable.fondo_sanvalentin2,
+            2 to R.drawable.fondo_sanvalentin3,
+            3 to R.drawable.fondo_sanvalentin4,
+            4 to R.drawable.fondo_sanvalentin5
         )
         // Navidad
         3 -> mapOf(
             0 to R.drawable.fondo_navidad1,
             1 to R.drawable.fondo_navidad2,
             2 to R.drawable.fondo_navidad3,
-            3 to R.drawable.fondo_navidad3,
-            4 to R.drawable.fondo_navidad3
+            3 to R.drawable.fondo_navidad4,
+            4 to R.drawable.fondo_navidad5
         )
         // Día de la madre
         else -> mapOf(
-            0 to R.drawable.fondo_navidad1,
-            1 to R.drawable.fondo_navidad1,
-            2 to R.drawable.fondo_navidad1,
-            3 to R.drawable.fondo_navidad1,
-            4 to R.drawable.fondo_navidad1
+            0 to R.drawable.fondo_diadelamadre1,
+            1 to R.drawable.fondo_diadelamadre2,
+            2 to R.drawable.fondo_diadelamadre3,
+            3 to R.drawable.fondo_diadelamadre4,
+            4 to R.drawable.fondo_diadelamadre4
         )
     }
 }
