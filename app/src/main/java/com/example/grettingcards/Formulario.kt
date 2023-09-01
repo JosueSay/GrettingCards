@@ -1,8 +1,11 @@
 package com.example.grettingcards
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -32,6 +35,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
@@ -51,6 +55,14 @@ class Formulario : ComponentActivity() {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun formulario(){
+    val lanzador = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.StartActivityForResult()
+    ) { resultado ->
+        // Manejar el resultado si es necesario
+    }
+    val contexto = LocalContext.current
+
+
     var nombre by remember {
         mutableStateOf("Persona a quien dirige la carta (Nombre)")
     }
@@ -132,7 +144,17 @@ fun formulario(){
             }
         }
         Spacer(modifier = Modifier.height(150.dp))
-        Button(onClick = { /*TODO*/ }) {
+        Button(onClick = {
+            val navegacion = Intent(contexto,Fragments::class.java)
+            //agregamos los parametros.
+            navegacion.putExtra("name",nombre)
+            navegacion.putExtra("apell",apellido)
+            navegacion.putExtra("dedica",dedicatoria)
+            navegacion.putExtra("tipo",TiposdeCarta)
+
+            lanzador.launch(navegacion)
+
+        }) {
             Text(text = "CREAR DISEÑO  ", style = TextStyle(fontSize = 27.sp))
             Icon(imageVector = Icons.Default.Create, contentDescription = "Icono de Creacion")
         }

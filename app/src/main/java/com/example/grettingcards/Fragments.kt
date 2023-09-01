@@ -1,6 +1,8 @@
 package com.example.grettingcards
 
+import android.os.Bundle
 import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -24,15 +26,12 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 class Fragments : ComponentActivity() {
-
-
-    // Lista de los fondos
-    val fondos_cumple: List<String> = listOf("fondo_cumple1", "fondo_cumple2", "fondo_cumple3")
-    val fondos_boda: List<String> = listOf("fondo_boda1", "fondo_boda2", "fondo_boda3")
-    val fondos_valentin: List<String> =
-        listOf("fondo_valentin1", "fondo_valentin2", "fondo_valentin3")
-
-    val fondos_madre: List<String> = listOf("fondo_madre1", "fondo_madre2", "fondo_madre3")
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            menuFragment(fondos_navidad)
+        }
+    }
 }
 
 //PRUEBAS

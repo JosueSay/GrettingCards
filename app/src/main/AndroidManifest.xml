@@ -28,7 +28,7 @@
             android:label="@string/title_activity_formulario"
             android:theme="@style/Theme.GrettingCards" />
         <activity
-            android:name=".MainActivity2"
+            android:name=".Fragments"
             android:exported="false"
             android:label="@string/title_activity_main2"
             android:theme="@style/Theme.GrettingCards" />
