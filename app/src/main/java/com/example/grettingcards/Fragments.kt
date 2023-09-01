@@ -20,7 +20,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -31,13 +30,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.graphics.ColorUtils
 
 
 class Fragments : ComponentActivity() {
@@ -58,13 +60,14 @@ class Fragments : ComponentActivity() {
 @Composable
 fun menuFragment(nombre: String, apellido: String, dedicatoria: String, tipo_fondo: Int) {
 
+    // Cambios de activities
     val lanzador = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.StartActivityForResult()
     ) { resultado ->
-        // Manejar el resultado si es necesario
     }
     val contexto = LocalContext.current
 
+    // mapa de fondos
     val fondos: Map<Int, Int> = dameFondo(tipo_fondo)
 
     // Id del fondo 0
@@ -98,22 +101,14 @@ fun menuFragment(nombre: String, apellido: String, dedicatoria: String, tipo_fon
             verticalAlignment = Alignment.CenterVertically
         ) {
 
-            // Calcular el color del texto basado en el color del fondo actual
-            val colorContraste = if (isColorDark(MaterialTheme.colorScheme.primary)) {
-                Color.White // Usar color claro si el fondo es oscuro
-            } else {
-                Color.Black // Usar color oscuro si el fondo es claro
-
-            }
-
-
             Column() {
                 Spacer(modifier = Modifier.height(50.dp)) // Espacio vertical
                 // Nombre
                 Text(
                     modifier = Modifier.padding(16.dp),
-                    text = "De: " + nombre + " " + apellido,
-                    color = colorContraste,
+                    text = "De: $nombre $apellido",
+                    fontWeight = FontWeight.Bold,
+                    color = Color.DarkGray,
                     style = TextStyle(fontSize = 30.sp) // Tamaño grande
                 )
                 Spacer(modifier = Modifier.height(8.dp)) // Espacio vertical
@@ -121,7 +116,8 @@ fun menuFragment(nombre: String, apellido: String, dedicatoria: String, tipo_fon
                 Text(
                     modifier = Modifier.padding(16.dp),
                     text = dedicatoria,
-                    color = colorContraste,
+                    fontWeight = FontWeight.Bold,
+                    color = Color.LightGray,
                     style = TextStyle(fontSize = 18.sp)
                 )
             }
@@ -210,14 +206,6 @@ fun menuFragment(nombre: String, apellido: String, dedicatoria: String, tipo_fon
 }
 
 /**
- * Función que detecta si el fondo es oscuro o claro
- * */
-fun isColorDark(color: Color): Boolean {
-    val darkness = (0.299 * color.red + 0.587 * color.green + 0.114 * color.blue) / 255
-    return darkness >= 0.5
-}
-
-/**
  * Función que determina qué fondo usar
  */
 fun dameFondo(tipo_fondo: Int): Map<Int, Int> {
@@ -264,7 +252,6 @@ fun dameFondo(tipo_fondo: Int): Map<Int, Int> {
         )
     }
 }
-
 
 @Composable
 @Preview
