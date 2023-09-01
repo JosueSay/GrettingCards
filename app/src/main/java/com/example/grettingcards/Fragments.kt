@@ -223,8 +223,8 @@ fun dameFondo(tipo_fondo: Int): Map<Int, Int> {
             0 to R.drawable.fondo_boda1,
             1 to R.drawable.fondo_boda2,
             2 to R.drawable.fondo_boda3,
-            3 to R.drawable.fondo_boda3,
-            4 to R.drawable.fondo_boda3
+            3 to R.drawable.fondo_boda4,
+            4 to R.drawable.fondo_boda5
         )
         // San Valentín
         3 -> mapOf(
@@ -248,7 +248,7 @@ fun dameFondo(tipo_fondo: Int): Map<Int, Int> {
             1 to R.drawable.fondo_diadelamadre2,
             2 to R.drawable.fondo_diadelamadre3,
             3 to R.drawable.fondo_diadelamadre4,
-            4 to R.drawable.fondo_diadelamadre4
+            4 to R.drawable.fondo_diadelamadre5
         )
     }
 }
