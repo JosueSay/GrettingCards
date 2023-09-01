@@ -54,7 +54,7 @@ class Formulario : ComponentActivity() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun formulario(){
+fun formulario() {
     val lanzador = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.StartActivityForResult()
     ) { resultado ->
@@ -64,77 +64,101 @@ fun formulario(){
 
 
     var nombre by remember {
-        mutableStateOf("Persona a quien dirige la carta (Nombre)")
+        mutableStateOf("")
     }
     var apellido by remember {
-        mutableStateOf("Persona a quien dirige la carta (Apellido)")
+        mutableStateOf("")
     }
     var dedicatoria by remember {
-        mutableStateOf("Dedicatoria a la Persona")
+        mutableStateOf("")
     }
     var isExpanded by remember {
         mutableStateOf(false)
     }
     // 1 Cumplea;os 2 Boda, 3 San Valentin 4 Navidad 5 Dia de la madre.
-    var TiposdeCarta:Int = 0
+    var TiposdeCarta by remember {
+        mutableStateOf(0)
+    }
     var NombreTipo by remember {
         mutableStateOf("")
     }
 
-    Column (modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally){
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
         //Texto del titulo
-        Text("! Ingresa los Datos ",style = TextStyle(
+        Text(
+            "! Ingresa los Datos ", style = TextStyle(
                 fontSize = 35.sp, fontWeight = FontWeight.Bold
-                )
+            )
         )
-        Text(" de tu Carta !",style = TextStyle(
-            fontSize = 35.sp, fontWeight = FontWeight.Bold
-        )
+        Text(
+            " de tu Carta !", style = TextStyle(
+                fontSize = 35.sp, fontWeight = FontWeight.Bold
+            )
         )
         Spacer(modifier = Modifier.height(100.dp))
-        OutlinedTextField(value =nombre, onValueChange = {newText -> nombre = newText},label= { Text(text = "Nombre",modifier = Modifier.background(Color.White))})
+        OutlinedTextField(
+            value = nombre,
+            onValueChange = { newText -> nombre = newText },
+            label = { Text(text = "Nombre", modifier = Modifier.background(Color.White)) })
         Spacer(modifier = Modifier.height(20.dp))
-        OutlinedTextField(value =apellido, onValueChange = {newText -> apellido = newText},label= { Text(text = "Apellido",modifier = Modifier.background(Color.White))})
+        OutlinedTextField(
+            value = apellido,
+            onValueChange = { newText -> apellido = newText },
+            label = { Text(text = "Apellido", modifier = Modifier.background(Color.White)) })
         Spacer(modifier = Modifier.height(20.dp))
-        OutlinedTextField(value =dedicatoria, onValueChange = {newText -> dedicatoria = newText},label= { Text(text = "Dedicatoria",modifier = Modifier.background(Color.White))})
+        OutlinedTextField(
+            value = dedicatoria,
+            onValueChange = { newText -> dedicatoria = newText },
+            label = { Text(text = "Dedicatoria", modifier = Modifier.background(Color.White)) })
         Spacer(modifier = Modifier.height(20.dp))
-        ExposedDropdownMenuBox(expanded = isExpanded, onExpandedChange = {isExpanded = it}) {
-            OutlinedTextField(value =NombreTipo, onValueChange = {},
-                readOnly = true, trailingIcon = {ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpanded)},
-                modifier = Modifier.menuAnchor()
-                ,label= { Text(text = "Tipo de Carta",modifier = Modifier.background(Color.White))})
+        ExposedDropdownMenuBox(expanded = isExpanded, onExpandedChange = { isExpanded = it }) {
+            OutlinedTextField(value = NombreTipo,
+                onValueChange = {},
+                readOnly = true,
+                trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = isExpanded) },
+                modifier = Modifier.menuAnchor(),
+                label = {
+                    Text(
+                        text = "Tipo de Carta",
+                        modifier = Modifier.background(Color.White)
+                    )
+                })
 
-            ExposedDropdownMenu(expanded = isExpanded, onDismissRequest = {isExpanded=false}) {
+            ExposedDropdownMenu(expanded = isExpanded, onDismissRequest = { isExpanded = false }) {
                 DropdownMenuItem(
-                    text = { Text(text = "Cumpleaños")},
+                    text = { Text(text = "Cumpleaños") },
                     onClick = {
                         NombreTipo = "Cumpleaños"
                         TiposdeCarta = 1
                         isExpanded = false
                     })
                 DropdownMenuItem(
-                    text = { Text(text = "Boda")},
+                    text = { Text(text = "Boda") },
                     onClick = {
                         NombreTipo = "Boda"
                         TiposdeCarta = 2
                         isExpanded = false
                     })
                 DropdownMenuItem(
-                    text = { Text(text = "San Valentin")},
+                    text = { Text(text = "San Valentin") },
                     onClick = {
                         NombreTipo = "San Valentin"
                         TiposdeCarta = 3
                         isExpanded = false
                     })
                 DropdownMenuItem(
-                    text = { Text(text = "Navidad")},
+                    text = { Text(text = "Navidad") },
                     onClick = {
                         NombreTipo = "Navidad"
                         TiposdeCarta = 4
                         isExpanded = false
                     })
                 DropdownMenuItem(
-                    text = { Text(text = "Dia de la Madre")},
+                    text = { Text(text = "Dia de la Madre") },
                     onClick = {
                         NombreTipo = "Dia de la Madre"
                         TiposdeCarta = 5
@@ -145,12 +169,12 @@ fun formulario(){
         }
         Spacer(modifier = Modifier.height(150.dp))
         Button(onClick = {
-            val navegacion = Intent(contexto,Fragments::class.java)
+            val navegacion = Intent(contexto, Fragments::class.java)
             //agregamos los parametros.
-            navegacion.putExtra("name",nombre)
-            navegacion.putExtra("apell",apellido)
-            navegacion.putExtra("dedica",dedicatoria)
-            navegacion.putExtra("tipo",TiposdeCarta)
+            navegacion.putExtra("name", nombre)
+            navegacion.putExtra("apell", apellido)
+            navegacion.putExtra("dedica", dedicatoria)
+            navegacion.putExtra("tipo", TiposdeCarta)
 
             lanzador.launch(navegacion)
 
@@ -164,6 +188,6 @@ fun formulario(){
 
 @Preview(showSystemUi = true)
 @Composable
-fun previewForm(){
+fun previewForm() {
     formulario()
 }

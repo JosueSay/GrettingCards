@@ -40,7 +40,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 
-
 class Fragments : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -77,19 +76,6 @@ fun menuFragment(nombre: String, apellido: String, dedicatoria: String, tipo_fon
         mutableStateOf(id_actual)
     }
 
-    // Color del texto
-    // Utilizar la detección de color dominante en la imagen de fondo
-    val colorContraste =
-        MaterialTheme.colorScheme.primary
-
-    val colorFinal = if (colorContraste.isColorDark()) {
-        Color.Black // Usar color oscuro si el fondo es claro
-
-    } else {
-        Color.White // Usar color claro si el fondo es oscuro
-    }
-
-
     Column(
         modifier = Modifier
             .fillMaxSize() // Ocupar todo el espacio disponible
@@ -112,17 +98,28 @@ fun menuFragment(nombre: String, apellido: String, dedicatoria: String, tipo_fon
             verticalAlignment = Alignment.CenterVertically
         ) {
 
+            // Calcular el color del texto basado en el color del fondo actual
+            val colorContraste = if (isColorDark(MaterialTheme.colorScheme.primary)) {
+                Color.White // Usar color claro si el fondo es oscuro
+            } else {
+                Color.Black // Usar color oscuro si el fondo es claro
+
+            }
+
+
             Column() {
                 Spacer(modifier = Modifier.height(50.dp)) // Espacio vertical
                 // Nombre
                 Text(
-                    text = "De:" + nombre + "\n" + "Para: " + apellido,
+                    modifier = Modifier.padding(16.dp),
+                    text = "De: " + nombre + " " + apellido,
                     color = colorContraste,
                     style = TextStyle(fontSize = 30.sp) // Tamaño grande
                 )
                 Spacer(modifier = Modifier.height(8.dp)) // Espacio vertical
                 // Dedicatoria
                 Text(
+                    modifier = Modifier.padding(16.dp),
                     text = dedicatoria,
                     color = colorContraste,
                     style = TextStyle(fontSize = 18.sp)
@@ -169,7 +166,7 @@ fun menuFragment(nombre: String, apellido: String, dedicatoria: String, tipo_fon
             // Boton de Inicio
             IconButton(
                 onClick = {
-                    val navegacion = Intent(contexto,MainActivity::class.java)
+                    val navegacion = Intent(contexto, Formulario::class.java)
                     lanzador.launch(navegacion)
                 },
                 // Tamaño del boton
@@ -215,8 +212,8 @@ fun menuFragment(nombre: String, apellido: String, dedicatoria: String, tipo_fon
 /**
  * Función que detecta si el fondo es oscuro o claro
  * */
-fun Color.isColorDark(): Boolean {
-    val darkness = (0.299 * red + 0.587 * green + 0.114 * blue) / 255
+fun isColorDark(color: Color): Boolean {
+    val darkness = (0.299 * color.red + 0.587 * color.green + 0.114 * color.blue) / 255
     return darkness >= 0.5
 }
 
